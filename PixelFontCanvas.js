@@ -179,8 +179,8 @@ class PixelFontCanvas {
             
             // Create a buffer element to draw based on the Image img
             const el = Object.assign(document.createElement('canvas'), {
-                width: canvas.width,
-                height: canvas.height
+                width: texture.width,
+                height: texture.height
             });
             let btx = el.getContext('2d');
             btx.imageSmoothingEnabled = false;

@@ -30,20 +30,78 @@ window.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = "#303080";
     ctx.fillRect(0,0,640,480);
 
-    PixelFontCanvas.loadFont('assets/','emulogic.fnt',function(data) {
+    PixelFontCanvas.loadFont('assets/', 'emulogic.fnt', (data) => {
+
+        PixelFontCanvas.drawText(
+            canvas,
+            "Score: 00005500",
+            {
+                font: 'Emulogic',
+                x: 20,
+                y: 20,
+                scale: 1,
+                width: 640,
+                align: 'left',
+                tint: '#FFFFFF'
+            }
+        );
+
         PixelFontCanvas.drawText(
             canvas,
             "Hello World!\nThis is a test... 123",
             {
                 font: 'Emulogic',
-                x: 10,
-                y: 10,
+                x: 320,
+                y: 30,
                 scale: 2,
                 width: 640,
                 align: 'center',
                 tint: '#FFFF00'
             }
         );
+
+        PixelFontCanvas.drawText(
+            canvas,
+            "WAVE 1 - GET READY!",
+            {
+                font: 'Emulogic',
+                x: 320,
+                y: 180,
+                scale: 5,
+                width: 640,
+                align: 'center',
+                tint: '#AAAAFF'
+            }
+        );
+
+        PixelFontCanvas.drawText(
+            canvas,
+            "This is a long text, just to test how to break the text into a maximum width of 100 pixels. If this works, you will see many lines of text here. Do you like this text?", 
+            {
+                font: 'Emulogic',
+                x: 20,
+                y: 60,
+                scale: 1,
+                width: 100,
+                align: 'left',
+                tint: '#802080'
+            }
+        );
+
+        PixelFontCanvas.drawText(
+            canvas,
+            "Low health!",
+            {
+                font: 'Emulogic',
+                x: 620,
+                y: 450,
+                scale: 1,
+                width: 640,
+                align: 'right',
+                tint: '#FF0000'
+            }
+        );
+
     });
 
 });
