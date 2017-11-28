@@ -5,7 +5,7 @@ Easy to use.
 demo:
 https://bitofgold.github.io/PixelFontCanvas/
 
-Only uses HTML5 Canvas. no dependencies.
+Only uses HTML5 canvas. No dependencies.
 
 Partly based on PixiJS's BitmapText:
 https://github.com/pixijs/pixi.js/blob/dev/src/extras/BitmapText.js
