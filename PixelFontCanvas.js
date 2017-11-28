@@ -1,42 +1,66 @@
 class PixelFontCanvas {
 
-    constructor(text, style = {}) {
-        this._text = text;
-        this._font = {
-            font: style.font,
-            tint: style.tint !== undefined ? style.tint : 0xFFFFFF,
-            align: style.align || 'left',
-            scale: style.scale !== undefined ? style.scale : 1,
-        };
+    static renderText(canvas, text, style = {}) {
+        //
     }
 
-
-    static loadFont(font_url, on_success = function() {}) {
+    static loadFont(font_dir, font_file, on_success = function(data) {}) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                xml = this.responseXML;
-                var fileName = xml.getElementsByTagName('page')[0].getAttribute('file');
+                const fnt = this.responseText;
+                const xml = PixelFontCanvas.fntToXML(fnt);
+                console.log('xml',xml);
+                const fileName = xml.getElementsByTagName('page')[0].getAttribute('file');
                 console.log('fileName',fileName);
-                var img = new Image();
+                const img = new Image();
                 img.onload = function() {
-                    var data = PixelFontCanvas.registerFont(xml,img);
+                    const data = PixelFontCanvas.registerFont(xml,img);
                     on_success(data);
                 };
-                img.src = fileName;
+                img.src = font_dir+fileName;
             }
         };
-        xhttp.open("GET", font_xml_url, true);
+        xhttp.open("GET", font_dir+font_file, true);
         xhttp.send();
     }
 
-    static registerFont(font_xml,font_image) 
+    static fntToXML(text) {
+        const lines = text.replace(/\r/g,"").split("\n");
+        let xmltext = "<font>\n";
+        for (let i = 0; i<lines.length; i++) {
+            const line = lines[i].split(" ");
+            let tag = '';
+            for (let j = 0; j<line.length; j++) {
+                let keyval = line[j];
+                keyval = keyval.split("=");
+                if (keyval[0] != "") {
+                    if (j==0) {
+                        tag = keyval[0];
+                        xmltext += '<'+tag;
+                    } else {
+                        xmltext += " "+keyval[0]+'="' + keyval[1].replace(/\"/g,'') + '"';
+                    }
+                }
+            }
+            if (tag != "") {
+                xmltext += "/>\n";
+            }
+        }
+        xmltext += "</font>\n";
+        console.log('xml',xmltext);        
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmltext,"text/xml");
+        return(xmlDoc);
+    }
+
+    static registerFont(xml, font_image)
     {
         const data = {};
         const info = xml.getElementsByTagName('info')[0];
         const common = xml.getElementsByTagName('common')[0];
         const fileName = xml.getElementsByTagName('page')[0].getAttribute('file');
-        res = 1;
+        const res = 1;
 
         data.font = info.getAttribute('face');
         data.size = parseInt(info.getAttribute('size'), 10);
@@ -52,8 +76,8 @@ class PixelFontCanvas {
             const charCode = parseInt(letter.getAttribute('id'), 10);
 
             const textureRect = {
-                x: (parseInt(letter.getAttribute('x'), 10) / res) + (texture.frame.x / res),
-                y: (parseInt(letter.getAttribute('y'), 10) / res) + (texture.frame.y / res),
+                x: (parseInt(letter.getAttribute('x'), 10) / res),
+                y: (parseInt(letter.getAttribute('y'), 10) / res),
                 width: parseInt(letter.getAttribute('width'), 10) / res,
                 height: parseInt(letter.getAttribute('height'), 10) / res
             };
@@ -87,7 +111,6 @@ class PixelFontCanvas {
         PixelFontCanvas[data.font] = data;
 
         return data;
-
     }
 }
 

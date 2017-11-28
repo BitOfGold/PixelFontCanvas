@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <title>PixelFontCanvas - Test</title>
+    <script src="PixelFontCanvas.js"></script>
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            margin: 10px;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+<canvas id="renderCanvas"></canvas>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    var canvas = document.getElementById('renderCanvas');
+    canvas.width = 640;
+    canvas.height = 480;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0,0,640,480);
+
+    PixelFontCanvas.loadFont('assets/','emulogic.fnt',function(data) {
+        PixelFontCanvas.renderText(
+            canvas,
+            'Hello World! This is a test... 123',
+            {
+                font: 'Emulogic',
+                x: 10,
+                y: 10,
+                scale: 2,
+                width: 640,
+                align: 'center'
+            }
+        );
+    });
+
+});
+</script>
+</body>
