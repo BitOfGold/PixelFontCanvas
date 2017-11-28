@@ -27,20 +27,21 @@ window.addEventListener('DOMContentLoaded', () => {
     canvas.width = 640;
     canvas.height = 480;
     var ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#303080";
     ctx.fillRect(0,0,640,480);
 
     PixelFontCanvas.loadFont('assets/','emulogic.fnt',function(data) {
-        PixelFontCanvas.renderText(
+        PixelFontCanvas.drawText(
             canvas,
-            'Hello World! This is a test... 123',
+            "Hello World!\nThis is a test... 123",
             {
                 font: 'Emulogic',
                 x: 10,
                 y: 10,
                 scale: 2,
                 width: 640,
-                align: 'center'
+                align: 'center',
+                tint: '#FFFF00'
             }
         );
     });
