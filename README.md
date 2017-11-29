@@ -8,11 +8,6 @@ Only uses HTML5 canvas. No dependencies.
 
 https://bitofgold.github.io/PixelFontCanvas/
 
-
-
-Partly based on PixiJS's BitmapText:
-https://github.com/pixijs/pixi.js/blob/dev/src/extras/BitmapText.js
-
 ### Pixel font files are from: ###
 
 VGA 9 x 16 font:
@@ -24,3 +19,6 @@ http://www.fontspace.com/freaky-fonts/emulogic
 ### License ###
 
 This content is released under the (http://opensource.org/licenses/MIT) MIT License.
+
+Partly based on PixiJS's BitmapText:
+https://github.com/pixijs/pixi.js/blob/dev/src/extras/BitmapText.js
