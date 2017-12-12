@@ -23,7 +23,7 @@ class PixelFontCanvas {
     //registers a preloaded .fnt text and a preloaded image object as a font, registers font by font face
     static registerFont(fnt_text, image_obj) {
         const xml = PixelFontCanvas._fntToXML(fnt_text);
-        const data = PixelFontCanvas._registerFontXML(xml,img);
+        const data = PixelFontCanvas._registerFontXML(xml,image_obj);
     }
 
     //draws text to canvas, style and position in style
