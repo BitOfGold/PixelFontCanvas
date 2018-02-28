@@ -172,13 +172,13 @@ class PixelFontCanvas {
         const ctx = canvas.getContext("2d");
         ctx.imageSmoothingEnabled = false;
 
-        /*if (PixelFontCanvas._texture_cache[drawData.font+'-'+drawData.tint]) {
-            const el = PixelFontCanvas._texture_cache[drawData.font+'-'+drawData.tint];
-        } else {*/
+        if (PixelFontCanvas._texture_cache[drawData.font+'-'+drawData.tint]) {
+            var el = PixelFontCanvas._texture_cache[drawData.font+'-'+drawData.tint];
+        } else {
             const texture = drawData.texture;
             
             // Create a buffer element to draw based on the Image img
-            const el = Object.assign(document.createElement('canvas'), {
+            var el = Object.assign(document.createElement('canvas'), {
                 width: texture.width,
                 height: texture.height
             });
@@ -197,7 +197,7 @@ class PixelFontCanvas {
             btx.globalCompositeOperation = 'destination-in';
             btx.drawImage(texture, 0, 0);
             PixelFontCanvas._texture_cache[drawData.font+'-'+drawData.tint] = el;
-        // }
+        }
         
         const lenGlyphs = glyphs.length;
         for (let i = 0; i < lenGlyphs; i++) {
