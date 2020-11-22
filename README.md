@@ -18,7 +18,7 @@ http://www.fontspace.com/freaky-fonts/emulogic
 
 ### License ###
 
-This content is released under the (http://opensource.org/licenses/MIT) MIT License.
+This content is released under the MIT License, check the file LICENSE
 
 Partly based on PixiJS's BitmapText:
 https://github.com/pixijs/pixi.js/blob/dev/src/extras/BitmapText.js
